@@ -6,7 +6,8 @@ import type {
 } from 'n8n-workflow';
 
 export class SswCredentialsApi implements ICredentialType {
-    name = 'sswWhatsAppApi';
+	name = 'sswWhatsAppApi';
+	documentationUrl = 'https://github.com/super-simple-whats/n8n-nodes-ssw';
     displayName = 'SSW WhatsApp API';
     properties: INodeProperties[] = [
         {

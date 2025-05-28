@@ -9,7 +9,7 @@ import type {
 
 import { NodeConnectionType } from 'n8n-workflow';
 
-export class SswTrigger implements INodeType {
+export class SswWhatsappTrigger implements INodeType {
     description: INodeTypeDescription = {
         displayName: 'SSW WhatsApp Trigger',
         name: 'sswWhatsappTrigger',
@@ -47,12 +47,12 @@ export class SswTrigger implements INodeType {
                 description: 'Unique name for this webhook (must be unique across your n8n instance)',
             },
             {
-                displayName: 'Device Name',
+                displayName: 'Device Name or ID',
                 name: 'deviceName',
                 type: 'options',
                 default: '',
                 required: true,
-                description: 'The device to filter webhooks for',
+                description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
                 typeOptions: {
                     loadOptionsMethod: 'getDevices',
                 },

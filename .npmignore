@@ -1,2 +1,20 @@
-.DS_Store
-*.tsbuildinfo
+# Source files
+nodes/
+credentials/
+*.ts
+!dist/**/*.d.ts
+
+# Config files
+tsconfig.json
+.eslintrc.js
+.prettierrc.js
+
+# Development
+.git/
+.github/
+node_modules/
+.env*
+
+# Documentation
+docs/
+examples/

@@ -6,7 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionType } from 'n8n-workflow';
 
-export class SswNode implements INodeType {
+export class SswWhatsappApi implements INodeType {
     description: INodeTypeDescription = {
         displayName: 'SSW WhatsApp API',
         name: 'sswWhatsappApi',
