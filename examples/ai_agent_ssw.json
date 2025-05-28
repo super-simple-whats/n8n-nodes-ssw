@@ -1,0 +1,152 @@
+{
+  "name": "AI Agent SSW Example Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        340,
+        -80
+      ],
+      "id": "54e34105-da32-477e-9e72-56ce458fd4c9",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        200
+      ],
+      "id": "d39ce5e0-5060-4eab-af73-b3ca59665bfb",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "ki20NUkGUwe5D6Xn",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        400,
+        300
+      ],
+      "id": "f36a7915-970c-45cb-af66-d11235008488",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "deviceName": "awrfranchising4"
+      },
+      "type": "n8n-nodes-ssw.sswWhatsappTrigger",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -80
+      ],
+      "id": "0f3b5f99-08fb-4632-af70-20d5e7c0914f",
+      "name": "SSW WhatsApp Trigger",
+      "webhookId": "0c9c8a5a-273c-4d38-9dca-d08fe6db06d8",
+      "credentials": {
+        "sswWhatsAppApi": {
+          "id": "aJ8j4ofJ2gbJglpG",
+          "name": "SSW WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "deviceName": "={{ $('SSW WhatsApp Trigger').item.json.device_name }}",
+        "phoneNumber": "={{ $('SSW WhatsApp Trigger').item.json.data.conversation_id }}",
+        "message": "={{ $json.output }}"
+      },
+      "type": "n8n-nodes-ssw.sswWhatsappApi",
+      "typeVersion": 1,
+      "position": [
+        700,
+        -80
+      ],
+      "id": "0a8377a0-2255-4806-9962-868c1116511b",
+      "name": "SSW WhatsApp API",
+      "credentials": {
+        "sswWhatsAppApi": {
+          "id": "aJ8j4ofJ2gbJglpG",
+          "name": "SSW WhatsApp account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "SSW WhatsApp API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SSW WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "71e46154-b2af-49a4-baac-f095a6d7b502",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0ee3af74bd58b58eb8fa93714f2edc604900d6bf60c3f12f2aeb978290c4887f"
+  },
+  "id": "TFk3xX62Ta55GWT8",
+  "tags": []
+}
