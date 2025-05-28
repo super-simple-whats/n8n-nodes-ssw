@@ -138,3 +138,57 @@ npm install n8n-nodes-ssw
 5. **SSW WhatsApp API**: Sends responses back to WhatsApp
 
 ### Data Flow
+
+WhatsApp Message → SSW Trigger → AI Agent → SSW API → WhatsApp Response
+
+
+## Customization
+
+### Modify AI Behavior
+- Edit the AI Agent node parameters to change system prompts
+- Adjust the OpenAI model settings for different response styles
+- Configure memory settings for conversation length
+
+### Add Tools/Functions
+- Connect additional nodes to the AI Agent for extended functionality
+- Add database lookups, API calls, or other integrations
+
+### Error Handling
+- Add error handling nodes for failed API calls
+- Implement fallback responses for AI failures
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Workflow not triggering**:
+   - Verify WhatsApp device is properly configured
+   - Check SSW WhatsApp credentials
+   - Ensure webhook URL is correctly set
+
+2. **AI responses not working**:
+   - Verify OpenAI credentials and API key
+   - Check OpenAI account has sufficient credits
+   - Review AI Agent configuration
+
+3. **Messages not sending**:
+   - Verify SSW WhatsApp API credentials
+   - Check phone number format
+   - Ensure device is online and connected
+
+### Debug Steps
+1. Check workflow execution logs
+2. Verify all credentials are properly configured
+3. Test each node individually
+4. Review n8n console for error messages
+
+## Support
+
+For issues specific to:
+- **n8n**: Visit [n8n documentation](https://docs.n8n.io)
+- **SSW WhatsApp Nodes**: Check the community node repository
+- **OpenAI Integration**: Review OpenAI API documentation
+
+## License
+
+This workflow example is provided as-is for educational and development purposes.
